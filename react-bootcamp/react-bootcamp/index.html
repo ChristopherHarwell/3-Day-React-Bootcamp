@@ -5,58 +5,35 @@
     <title>React App</title>
     <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
     <div id="app"></div>
 
-    <script>
+    <script type="text/babel">
 
       const name = 'Chris';
       const handle = '@chrisharwell';
 
       function NameComponent(props) {
-        return (
-          React.createElement(
-            'h1',
-            null,
-            props.name,
-          )
-        );
+        return <h1>{props.name}</h1>;
       };
 
       function HandleComponent(props) {
+        return <h3>{props.handle}</h3>;
+      };
+
+      function App() {
         return (
-          React.createElement(
-            'h3',
-            null,
-            props.handle
-          )
+          <div id='container'>
+            <NameComponent name={name} />
+            <HandleComponent handle={handle} />
+          </div>
         );
       };
 
-      const wrapperElement = React.createElement(
-          'div',
-          { id: 'container' },
-
-          /*
-          React.createElement([Component Name])
-          fixes this error:
-          Warning: Functions are not valid as a React child.
-          This may happen if you return a Component instead
-          of <Component /> from render. Or maybe you meant
-          to call this function rather than return it.
-          in div
-          */
-
-          /*
-          name and handle are the component props
-          */
-          React.createElement(NameComponent, { name: 'Chris' }),
-          React.createElement(HandleComponent, { handle: '@chrisharwell' }),
-        );
-
       ReactDOM.render(
-        wrapperElement,
+        <App />,
         document.getElementById('app')
       );
     </script>
