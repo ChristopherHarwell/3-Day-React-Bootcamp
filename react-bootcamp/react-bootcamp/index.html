@@ -71,11 +71,11 @@ class App extends React.Component {
     clearAllFriends(name) {
       this.setState((currentState) => {
         return {
-          friends: currentState.friends.map((friend) => friend !== name ),
-          input: '',
+          friends: currentState.friends.map((friend) => []),
+          button: '',
         }
       })
-    }
+    };
 
   render() {
     return (
